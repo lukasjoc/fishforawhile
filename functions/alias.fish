@@ -10,28 +10,29 @@ alias mv "mv -i"
 alias dc "docker-compose"
 alias vi "nvim"
 alias vim "nvim"
-alias ls "exa -magF --color=auto --color-scale"
-alias ll "ls -l --git"
-alias tree "exa -T"
+alias ls "exa -magF --color=auto --color-scale $argv"
+alias ll "ls -l --git $argv"
+alias tree "exa -T $argv"
 
-# Check for system (MACOS specific stuff)
+# Check for system (mac specific stuff)
 if uname -s == "Darwin"
-	alias locate_update "sudo /usr/libexec/locate.updatedb"
+  alias locate_update "sudo /usr/libexec/locate.updatedb"
 
-	function runbrewstuff -d "Update and Upgrade Brew Plugins"
-		command echo "Update/Upgrade Brew Formulars..."
-    ;and brew update and;
-		;and brew upgrade --greedy
-		;and rm -rf (brew --cache)
-		;and brew cleanup
+  function runbrewstuff -d "Update and Upgrade Brew Plugins"
+    command echo "Update/Upgrade Brew Formulars..."
+    ;and brew update and
+    ;and brew upgrade --greedy
+    ;and rm -rf (brew --cache)
+    ;and brew cleanup
     ;and brew doctor
-		;and echo "Done ;)"
+    ;and echo "Done ;)"
   end
 
   function bc -d "Install brew caskroom"
     command brew "$1" "$2" --cask
   end
 end
+# ---
 
 function ns -d "Start new default shell"
   command exec "$SHELL" -l
@@ -42,10 +43,11 @@ function npmls -d "List all globally installed npm packages"
 end
 
 function sc -d "List all available scripts for package.json and composer.json"
-	if  test -e "$PWD/package.json"
-	  command jq .scripts "package.json"
-	else
-	  command jq .scripts "composer.json"
+  if test -e "$PWD/package.json"
+    command jq .scripts "package.json"
+  end
+  if test -e "$PWD/composer.json"
+    command jq .scripts "composer.json"
   end
 end
 
@@ -77,13 +79,13 @@ end
 
 function man --wraps man -d "Format and display manual pages"
   env \
-		LESS_TERMCAP_mb="(printf '\e[1;31m')" \
-		LESS_TERMCAP_md="(printf '\e[1;31m')" \
-		LESS_TERMCAP_me="(printf '\e[0m')" \
-		LESS_TERMCAP_se="(printf '\e[0m')" \
-		LESS_TERMCAP_so="(printf '\e[1;44;33m')" \
-		LESS_TERMCAP_ue="(printf '\e[0m')" \
-		LESS_TERMCAP_us="(printf '\e[1;32m')"
-  	command man $argv
+    LESS_TERMCAP_mb="(printf '\e[1;31m')" \
+    LESS_TERMCAP_md="(printf '\e[1;31m')" \
+    LESS_TERMCAP_me="(printf '\e[0m')" \
+    LESS_TERMCAP_se="(printf '\e[0m')" \
+    LESS_TERMCAP_so="(printf '\e[1;44;33m')" \
+    LESS_TERMCAP_ue="(printf '\e[0m')" \
+    LESS_TERMCAP_us="(printf '\e[1;32m')"
+  command man $argv
 end
 
