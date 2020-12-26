@@ -1,22 +1,24 @@
-# Check for system (mac specific stuff)
-if uname -s == "Darwin"
-  alias locate_update "sudo /usr/libexec/locate.updatedb"
+# Basic functions
 
-  function runbrewstuff -d "Update and Upgrade Brew Plugins"
-    command echo "Update/Upgrade Brew Formulars..."
-    ;and brew update and
-    ;and brew upgrade --greedy
-    ;and rm -rf (brew --cache)
-    ;and brew cleanup
-    ;and brew doctor
-    ;and echo "Done ;)"
-  end
-
-  function bc -d "Install brew caskroom"
-    command brew "$1" "$2" --cask
-  end
+#Check for system (mac specific stuff)
+switch (uname -s)
+  case "Darwin"
+    function locate_update -d "Update locate db"
+      command sudo "/usr/libexec/locate.updatedb"
+    end
+    function runbrewstuff -d "update and upgrade brew plugins"
+      command echo "update/upgrade brew formulars..."
+      ;and brew update and
+      ;and brew upgrade --greedy
+      ;and rm -rf (brew --cache)
+      ;and brew cleanup
+      ;and brew doctor
+      ;and echo "done ;)"
+    end
+    function bc -d "install brew caskroom"
+      command brew "$1" "$2" --cask
+    end
 end
-# ---
 
 function ns --wraps=exec -d "Start new default shell"
   exec "$SHELL" -l
@@ -61,6 +63,7 @@ function gocmd -d "Go Language Helper"
   end
 end
 
+# Taken from -> https://github.com/decors/fish-colored-man/blob/master/functions/man.fish
 function man --wraps man --description 'Format and display manual pages'
     set -q man_blink; and set -l blink (set_color $man_blink); or set -l blink (set_color -o red)
     set -q man_bold; and set -l bold (set_color $man_bold); or set -l bold (set_color -o 5fafd7)
