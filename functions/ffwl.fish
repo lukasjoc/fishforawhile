@@ -18,8 +18,8 @@ if uname -s == "Darwin"
 end
 # ---
 
-function ns -d "Start new default shell"
-  command exec "$SHELL" -l
+function ns --wraps=exec -d "Start new default shell"
+  exec "$SHELL" -l
 end
 
 function npmls -d "List all globally installed npm packages"
