@@ -4,10 +4,10 @@
 switch (uname -s)
   case "Darwin"
     function locate_update -d "Update locate db"
-      command sudo "/usr/libexec/locate.updatedb"
+      sudo "/usr/libexec/locate.updatedb"
     end
     function runbrewstuff -d "update and upgrade brew plugins"
-      command echo "update/upgrade brew formulars..."
+      echo "update/upgrade brew formulars..."
       ;and brew update
       ;and brew upgrade --greedy
       ;and rm -rf (brew --cache)
@@ -16,7 +16,7 @@ switch (uname -s)
       ;and echo "done ;)"
     end
     function bc -d "install brew caskroom"
-      command brew "$argv" --cask
+      brew "$argv" --cask
     end
 end
 
@@ -25,15 +25,15 @@ function ns -d "Start new default shell"
 end
 
 function npmls -d "List all globally installed npm packages"
-  command npm list -g --depth=0;
+  npm list -g --depth=0;
 end
 
 function sc -d "List all available scripts for package.json and composer.json"
   if test -e "$PWD/package.json"
-    command jq .scripts "package.json"
+    jq .scripts "package.json"
   end
   if test -e "$PWD/composer.json"
-    command jq .scripts "composer.json"
+    jq .scripts "composer.json"
   end
 end
 
