@@ -47,9 +47,9 @@ end
 
 function gocmd -d "Go Language Helper"
   switch "$argv[1]"
-    case -bench
+    case -b -bench
       go test -v --bench . --benchmem -race
-    case -clean
+    case -v -clean
       go clean -x -r -cache -modcache
     case -mod
       go mod init "github.com/lukasjoc/$argv[2]"
