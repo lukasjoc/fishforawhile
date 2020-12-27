@@ -15,7 +15,7 @@ switch (uname -s)
       ;and brew doctor
       ;and echo "done ;)"
     end
-    function bca -d "install brew caskroom"
+    function bc -d "install brew caskroom"
       command brew "$argv" --cask
     end
 end
