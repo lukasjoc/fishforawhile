@@ -16,7 +16,7 @@ switch (uname -s)
       ;and echo "done ;)"
     end
     function bc -d "install brew caskroom"
-      brew "$argv" --cask
+      brew $argv[1] $argv[2] --cask
     end
 end
 
@@ -52,7 +52,7 @@ function gocmd -d "Go Language Helper"
     case -c -clean
       command go clean -x -r -cache -modcache
     case -mod
-      command go mod init "github.com/lukasjoc/$argv"
+      command go mod init github.com/lukasjoc/$argv[1]
     case "" -h
       echo "Usage: gocmd <option>"
       echo "Options:"
