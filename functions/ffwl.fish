@@ -16,7 +16,7 @@ switch (uname -s)
       ;and echo "done ;)"
     end
     function bc -d "install brew caskroom"
-      brew $argv[1] $argv[2] --cask
+      brew "$argv[1]" "$argv[2]" --cask
     end
 end
 
@@ -46,13 +46,13 @@ function builds -d "Go to directory $HOME/builds"
 end
 
 function gocmd -d "Go Language Helper"
-  switch "$cmd"
+  switch "$argv[1]"
     case -bench
-      command go test -v --bench . --benchmem -race
-    case -c -clean
-      command go clean -x -r -cache -modcache
+      go test -v --bench . --benchmem -race
+    case -clean
+      go clean -x -r -cache -modcache
     case -mod
-      command go mod init github.com/lukasjoc/$argv[1]
+      go mod init "github.com/lukasjoc/$argv[2]"
     case "" -h
       echo "Usage: gocmd <option>"
       echo "Options:"
@@ -98,8 +98,6 @@ function man --wraps man --description 'Format and display manual pages'
   set -l fish_manpath (dirname $fish_data_dir)/fish/man
   if test -d "$fish_manpath" -a -n "$MANPATH"
     set MANPATH "$fish_manpath":$MANPATH
-    command man $argv
-    return
   end
   command man "$argv"
 end
