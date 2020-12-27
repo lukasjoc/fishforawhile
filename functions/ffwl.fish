@@ -103,3 +103,4 @@ function man --wraps man --description 'Format and display manual pages'
   end
   command man "$argv"
 end
+
