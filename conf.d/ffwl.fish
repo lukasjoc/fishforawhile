@@ -38,11 +38,11 @@ function sc -d "List all available scripts for package.json and composer.json"
 end
 
 function fun -d "Go to directory $HOME/fun"
-  command cd "$HOME/fun"
+  cd "$HOME/fun"
 end
 
 function builds -d "Go to directory $HOME/builds"
-  command cd "$HOME/builds"
+  cd "$HOME/builds"
 end
 
 function gocmd -d "Go Language Helper"
