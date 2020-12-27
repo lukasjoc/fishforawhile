@@ -8,7 +8,7 @@ switch (uname -s)
     end
     function runbrewstuff -d "update and upgrade brew plugins"
       command echo "update/upgrade brew formulars..."
-      ;and brew update and
+      ;and brew update
       ;and brew upgrade --greedy
       ;and rm -rf (brew --cache)
       ;and brew cleanup
