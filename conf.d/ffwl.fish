@@ -16,13 +16,12 @@ switch (uname -s)
       ;and echo "done ;)"
     end
     function bca -d "install brew caskroom"
-      echo "$1, $2"
-      command brew "$1" "$2" --cask
+      command brew "$argv" --cask
     end
 end
 
 function ns -d "Start new default shell"
-  command exec "$SHELL" -l
+  exec "$SHELL" -l
 end
 
 function npmls -d "List all globally installed npm packages"
@@ -53,7 +52,7 @@ function gocmd -d "Go Language Helper"
     case -c -clean
       command go clean -x -r -cache -modcache
     case -mod
-      command go mod init "github.com/lukasjoc/$1"
+      command go mod init "github.com/lukasjoc/$argv"
     case "" -h
       echo "Usage: gocmd <option>"
       echo "Options:"
